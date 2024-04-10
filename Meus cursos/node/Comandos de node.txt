@@ -1,0 +1,14 @@
+npm init -y (tem como função criar um packet json)
+
+npm install open 
+(Ele será usado para abrir automaticamente o servidor do seu node)
+
+node serve.js
+(Ele serve para vc iniciar seu servidor)
+
+node --watch serve.js
+(ele tem como função sempre restarta o serve)
+
+
+npm install fastify
+(Ele tem como função ser um micro framework rotear sem precisar criar serve)
