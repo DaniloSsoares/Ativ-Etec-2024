@@ -1,0 +1,29 @@
+Php artisan serve
+
+rm public/storage
+ 
+rmdir public\storage
+ 
+php artisan  make:request adicionarRequest 
+
+php artisan migration
+
+php artisan help migrate
+
+Descrição: Reverte a última operação de migração executada.php artisan migrate:rollback
+
+Descrição: Lista todas as rotas definidas na aplicação, juntamente com informações adicionais como método, URL, controlador e nome da rota.
+php artisan route:list
+
+Descrição: Exclui todas as tabelas do banco de dados e aplica novamente todas as migrações. Este comando é útil para criar um banco de dados completamente limpo.
+php artisan migrate:fresh
+
+
+Descrição: Exibe o status das migrações, indicando quais já foram aplicadas.
+php artisan migrate:status
+
+Descrição: Cria um novo controlador. Você pode criar controladores específicos para recursos ou API.
+php artisan make:controller UserController
+
+
+php artisan storage:link

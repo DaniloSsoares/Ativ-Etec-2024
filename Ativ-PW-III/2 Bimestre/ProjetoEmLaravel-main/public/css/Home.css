@@ -1,0 +1,61 @@
+Body{
+    background-color: #E0DffD;
+    overflow-x: hidden;
+    width: auto;
+
+}
+
+
+.color-roxo{
+    background-color: #272747; 
+}
+
+.img{
+    width: 50px;
+    height: 50px;
+}
+
+.fundo{
+    z-index: -1;
+    width: 100%;
+}
+.fundomobile{
+  z-index: -1;
+  display: none;
+}
+
+
+
+.chamativo {
+  color: #272747;
+  padding: 10px;
+  text-align: center;
+  font-size: 3em;
+  border-radius: 10px;
+}
+
+.promo {
+  font-size: medium;
+}
+
+@media (max-width: 576px) {
+  body{
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .fundo{
+display: none;
+}
+.fundomobile{
+  display: block;
+  width: 120%;
+  top: 0;
+}
+.chamativo{
+  top: 0;
+}
+.containerHome{
+  margin-top: 30%;
+}
+}
+
