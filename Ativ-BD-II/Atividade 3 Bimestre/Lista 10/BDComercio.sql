@@ -2,12 +2,13 @@ create database BDComercio;
 
 use BDComercio;
 
-
+--Tabela estado civil
 create table Estado_civil(
 cod_est_civil int primary key,
 desc_est_civil varchar (150),
 );
 
+--Tabela Cliente
 create table Cliente(
 cod_cliente int primary key,
 nome_cliente varchar(60),
@@ -17,6 +18,7 @@ salario float,
 foreign key(cod_est_civil) references Estado_Civil(cod_est_civil)
 );
 
+--Tabela  Conjuge
 create table Conjuge(
 cod_conjuge Int primary key,
 nome_conjuge varchar (60),
@@ -25,11 +27,13 @@ cod_cliente int
 foreign key(cod_cliente) references Cliente(cod_cliente),
 );
 
+--Tabela Tipo do telefone
 create table Tipo_fone(
 cod_fone int primary key,
 desc_fone varchar(150)
 );
 
+--Tabela Telefone
 create table Telefone(
 cod_cliente int,
 cod_fone int,
@@ -39,17 +43,20 @@ foreign key(cod_cliente) references Cliente(cod_cliente),
 foreign key(cod_fone) references Tipo_fone(cod_fone)
 );
 
+--Tabela Produto
 create table Produto(
 cod_produto int primary key,
 nome_produto varchar(150),
-
+tipo_produto varchar (20)
 );
 
+--Tabela Funcionário
 create table Func(
 cod_func int primary key,
 nome_func varchar (150)
 );
 
+--Tabela Pedido
 create table Pedido(
 cod_pedido int primary key,
 cod_cliente int,
@@ -61,6 +68,7 @@ foreign key(cod_func) references Func(cod_func)
 
 );
 
+--Tabela Item-Pedido
 create table item_Pedido(
 cod_pedido int,
 cod_produto int,
@@ -70,7 +78,7 @@ foreign key(cod_pedido) references Pedido(cod_pedido),
 foreign key(cod_produto) references Produto(cod_produto)
 );
 
-
+--Tabela Premio
 create table Premio(
 cod_func int,
 valor_premio float,
@@ -78,6 +86,7 @@ valor_premio float,
 foreign key(cod_func) references Func(cod_func)
 ); 
 
+--Tabela Dependente
 create table Dependente(
 cod_dep int primary key,
 nome_dep varchar(60),
@@ -98,7 +107,14 @@ INSERT INTO Estado_civil (cod_est_civil, desc_est_civil) VALUES
 INSERT INTO Cliente (cod_cliente, nome_cliente, cod_est_civil, salario) VALUES
 (1, 'Maria Silva', 2, 3500.00),
 (2, 'João Pereira', 1, 4500.00),
-(3, 'Ana Costa', 3, 3200.00);
+(3, 'Ana Costa', 3, 3200.00),
+(4, 'Daniel Soares',1,4000.00),
+(5, 'Luisa Rodrigues',1,4000.00),
+(6, 'Pedro Ferri',2,2400.00),
+(7, 'Lucas',2,5250.00),
+(8, 'Gyovanna Soares',1,4250.00),
+(9, 'Nicole Castro', 3,1500.00),
+(4, 'Alicia Ribeiro',3,3500.00);
 
 
 INSERT INTO Conjuge (cod_conjuge, nome_conjuge, cod_cliente) VALUES
@@ -114,21 +130,36 @@ INSERT INTO Tipo_fone (cod_fone, desc_fone) VALUES
 
 
 INSERT INTO Telefone (cod_cliente, cod_fone, numero_fone) VALUES
-(1, 1, '11987654321'), 
-(2, 2, '11876543210'), 
-(3, 3, '11965432187');  
+(1, 1, '(11)987654321'), 
+(2, 2, '(11)876543210'), 
+(3, 3, '(11)965293645'),
+(4, 4, '(11)965192836'),
+(5, 5, '(11)965195673'),
+(6, 6, '(11)965028597'),
+(7, 7, '(11)963754893'),
+(8, 8, '(11)965975624'),
+(9, 9, '(11)965482313'),
+(10,10, '(11)965452315');
 
 
 INSERT INTO Produto (cod_produto, nome_produto) VALUES
 (1, 'Computador'),
 (2, 'Impressora'),
-(3, 'Mesa de Escritório');
+(3, 'Mesa de Escritório'),
+(4, 'fosforo');
 
 
 INSERT INTO Func (cod_func, nome_func) VALUES
 (1, 'Carlos Almeida'),
-(2, 'Roberta Santos'),
-(3, 'Miguel Ferreira');
+(2, 'Roseane Santos'),
+(3, 'Miguel Ferreira'),
+(4, 'Francisco Silva '),
+(5, 'Rener Amaro'),
+(6, 'Glaúcia Bennet'),
+(7, 'Tiago Baumer'),
+(8, 'Sarah Santana '),
+(9, 'Andrei Medina'),
+(10, 'Benardo Diniz');
 
 
 INSERT INTO Pedido (cod_pedido, cod_cliente, cod_func, data_pedido) VALUES
