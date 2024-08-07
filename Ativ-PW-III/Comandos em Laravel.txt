@@ -27,3 +27,7 @@ php artisan make:controller UserController
 
 
 php artisan storage:link
+
+Chat Gratuito
+https://dashboard.pusher.com/
+https://chatify.munafio.com/installation
