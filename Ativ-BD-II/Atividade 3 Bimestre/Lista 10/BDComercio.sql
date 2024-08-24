@@ -109,7 +109,7 @@ INSERT INTO Cliente (cod_cliente, nome_cliente, cod_est_civil, salario) VALUES
 (2, 'João Pereira', 2, 4500.00),
 (3, 'Ana Costa', 3, 3200.00),
 (4, 'Daniel Soares',2,4000.00),
-(5, 'Luisa Rodrigues',2,4000.00),
+(5, 'Vitória Rodrigues',2,4000.00),
 (6, 'Pedro Ferri',1,2400.00),
 (7, 'Lucas',2,5250.00),
 (8, 'Gyovanna Soares',1,4250.00),
@@ -132,7 +132,7 @@ INSERT INTO Tipo_fone (cod_fone, desc_fone) VALUES
 
 
 INSERT INTO Telefone (cod_cliente, cod_fone, numero_fone) VALUES
-    (1, 1, '(11)987654321'), 
+    (1, 1, NULL), 
     (2, 2, '(11)876543210'), 
     (3, 3, '(11)965293645'),
     (4, 1, '(11)965192836'),
@@ -192,7 +192,7 @@ INSERT INTO item_Pedido (cod_pedido, cod_produto, qtde_produto) VALUES
     (10, 6, 2); 
 
 INSERT INTO Premio (cod_func, valor_premio) VALUES
-    (1, 500.00), 
+    (1, null), 
     (2, 300.00), 
     (3, 700.00),
     (4, 300.00),
@@ -246,7 +246,36 @@ INSERT INTO Dependente (cod_dep, nome_dep, data_nasc, cod_func) VALUES
 	select Func.nome_func, Produto.nome_produto from Func JOIN Pedido on Func.cod_func = Pedido.cod_func join item_Pedido on Pedido.cod_pedido = item_Pedido.cod_pedido join Produto on item_Pedido.cod_produto = Produto.cod_produto;
 
 
-SELECT * FROM Estado_civil;
+	--Parte 3
+	--14)
+	select  Func.nome_func, sum(Premio.valor_premio) as total_premios from Func join  Premio on Func.cod_func = Premio.cod_func group by Func.nome_func;
+
+	--15)
+	select Func.nome_func, Count(Dependente.nome_dep) as quant_depend from Func join Dependente on Func.cod_func = Dependente.cod_func group by Func.nome_func
+
+	--16
+	select Estado_civil.desc_est_civil, count(Estado_civil.desc_est_civil) as Estado_civil from Cliente join Estado_civil on Cliente.cod_est_civil = Estado_civil.cod_est_civil group by Estado_civil.desc_est_civil
+
+	--17)
+	select Cliente.* , Telefone.numero_fone from Cliente left join Telefone on Cliente.cod_cliente = Telefone.cod_cliente where Telefone.numero_fone is null;
+     --ou
+    select Cliente.nome_cliente,Cliente.salario, Telefone.numero_fone from Cliente left join Telefone on Cliente.cod_cliente= Telefone.cod_cliente where Telefone.numero_fone Is null
+
+	--18)
+	select Estado_civil.desc_est_civil, Cliente.* from Cliente join Estado_civil on Cliente.cod_est_civil = Estado_civil.cod_est_civil where Estado_civil.desc_est_civil = 'Solteiro'
+
+	--19
+    select Estado_civil.desc_est_civil, Cliente.* from Cliente join Estado_civil on Cliente.cod_est_civil = Estado_civil.cod_est_civil where Estado_civil.desc_est_civil = 'Casado'
+	
+	--20
+	select Premio.valor_premio, Func.* from Func join Premio on Func.cod_func = Premio.cod_func where Premio.valor_premio is NULL
+
+	--21)
+	select Func.* from Func left join Dependente on Func.cod_func = Dependente.cod_func where Dependente.nome_dep IS NULL;
+
+	--22)
+	select Produto.* from Produto left join item_Pedido on Produto.cod_produto = item_Pedido.cod_produto where item_Pedido.cod_produto is null
+
 SELECT * FROM Cliente;
 SELECT * FROM Conjuge;
 SELECT * FROM Tipo_fone;
