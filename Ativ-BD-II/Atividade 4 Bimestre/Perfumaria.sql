@@ -167,6 +167,31 @@ INSERT INTO Item_Pedido (quantidade, Id_Produto, Cod_Nota) VALUES
 (20, 5, 6),
 (141, 5, 7);
 
+--Atividade
+--A) Listar todos os pontos estratégicos de cada região
+select Ponto_Estrategico.*,Regiao.nome as Região, Regiao.Endereco from Ponto_Estrategico left join Regiao on Ponto_Estrategico.Id_Reg = Regiao.Id_Reg
+
+--B)Listar os nomes das regiões cadastradas
+select Regiao.nome 
+
+--C) Listar todos os vendedores e quais veiculos que eles utilizaram no ultimo mês
+select Vendedor.Nome as Vendedor, Veiculo.Placa, Veiculo.Modelo, Veiculo.Marca, Escala.Data_Esca from Escala join Vendedor on Escala.Id_vend = Vendedor.Id_Vendedor join Veiculo on Escala.cod_Veic = Veiculo.cod_Veic where Escala.Data_Esca >= '2024-10-01'
+
+--D) Listar todos os vendedores responsáveis por cada região
+select Regiao.Nome as Regiao, Vendedor.Nome as Vendedor from Vendedor join Regiao on Vendedor.Id_Reg = Regiao.Id_Reg;
+
+--E) Listar todos os produtos vendidos por um determinado <vendedor>
+select Produto.Nome as Produto, Produto.Marca, Nota_Fiscal.Cod_Nota, Nota_Fiscal.Data_Nota from Item_Pedido join Produto on Item_Pedido.Id_Produto = Produto.Id_Produto join Nota_Fiscal on Item_Pedido.Cod_Nota = Nota_Fiscal.Cod_Nota where Nota_Fiscal.Id_Vend = Id_Vend; 
+
+--F) Listar todos os vendedores que venderam um determinado <produto>
+
+--G) Todos os produtos qe ainda não foram vendidos
+select Produto.Nome as Produto, Produto.Marca from Produto left join Item_Pedido on Produto.Id_Produto = Item_Pedido.Id_Produto where Item_Pedido.Cod_Nota is null;
+
+--H) Listar o histórico de utilização de um determinado <veiculo>
+
+--I) A quantidade de itens de cada nota fiscal
+select Nota_Fiscal.Cod_Nota, sum(Item_Pedido.quantidade) as Quantidade_Total from Item_Pedido join Nota_Fiscal on Item_Pedido.Cod_Nota = Nota_Fiscal.Cod_Nota group by Nota_Fiscal.Cod_Nota;
 
 select * from Regiao;
 select * from Vendedor;
